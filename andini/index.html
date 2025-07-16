@@ -32,7 +32,7 @@
       padding: 20px;
     }
 
-    .video-card {
+    .video-card, .ad-card {
       background: #1f1f1f;
       border-radius: 10px;
       overflow: hidden;
@@ -43,7 +43,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      transition: transform 0.2s;
     }
 
     .video-card:hover {
@@ -61,6 +60,18 @@
       margin-top: 10px;
       font-size: 0.9rem;
       color: #f1f1f1;
+    }
+
+    .ad-native {
+      width: 300px;
+      height: 250px;
+    }
+
+    @media (max-width: 480px) {
+      .ad-native {
+        width: 100%;
+        height: auto;
+      }
     }
   </style>
 </head>
@@ -86,16 +97,6 @@
   <!-- 🎬 Grid Video -->
   <div class="grid" id="video-container"></div>
 
-  <!-- 🔴 Popunder Script Once Click -->
-  <script>
-    document.addEventListener('click', function () {
-      var s = document.createElement('script');
-      s.src = 'https://siblinggut.com/66/e7/9a/66e79a753269d03ddec67bae4a63fdcd.js';
-      s.type = 'text/javascript';
-      document.body.appendChild(s);
-    }, { once: true });
-  </script>
-
   <script>
     fetch('../videos.json')
       .then(res => {
@@ -106,7 +107,20 @@
         const container = document.getElementById('video-container');
         const filtered = data.filter(v => v.link.includes('andini/'));
 
-        filtered.forEach(video => {
+        filtered.forEach((video, index) => {
+          // Tambahkan native ads setelah 4 video
+          if (index === 4) {
+            const adDiv = document.createElement('div');
+            adDiv.className = 'ad-card';
+            adDiv.innerHTML = `
+              <div class="ad-native">
+                <script async="async" data-cfasync="false" src="//siblinggut.com/087a5434b38672b575440c316bebe4f4/invoke.js"></script>
+                <div id="container-087a5434b38672b575440c316bebe4f4"></div>
+              </div>
+            `;
+            container.appendChild(adDiv);
+          }
+
           const div = document.createElement('div');
           div.className = 'video-card';
           div.innerHTML = `
