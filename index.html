@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Iklan dalam Tabel</title>
+  <style>
+    body {
+      background-color: #eeeeee;
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    table {
+      width: 100%;
+      max-width: 600px;
+      margin: auto;
+      background-color: #ffffff;
+      border-collapse: collapse;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    th, td {
+      padding: 16px;
+      border: 1px solid #dddddd;
+      text-align: left;
+    }
+    .ad-cell {
+      text-align: center;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+
+  <table>
+    <tr>
+      <th>Judul</th>
+      <th>Deskripsi</th>
+    </tr>
+    <tr>
+      <td>Artikel 1</td>
+      <td>Konten menarik yang layak dibaca oleh pengunjung...</td>
+    </tr>
+    <tr>
+      <td>Artikel 2</td>
+      <td>Informasi bermanfaat yang bisa meningkatkan trafik...</td>
+    </tr>
+    <tr>
+      <td colspan="2" class="ad-cell">
+        <!-- Banner Ads 300x250 -->
+        <div style="width:300px; height:250px; margin:auto;">
+          <script type="text/javascript" src="//YOUR_ADSTERRA_CODE_HERE.js"></script>
+        </div>
+        <p style="font-size:12px; color:#999;">Sponsored content</p>
+      </td>
+    </tr>
+    <tr>
+      <td>Artikel 3</td>
+      <td>Tips dan trik monetisasi web seperti suhu ajarkan 💡</td>
+    </tr>
+  </table>
+
+</body>
+</html>
