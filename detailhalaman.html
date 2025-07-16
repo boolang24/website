@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detail Video Anime - AzlStream</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+      .search-bar {
+  position: relative;
+  padding: 10px 15px;
+  background-color: #1e1e1e;
+  border-bottom: 1px solid #333;
+}
+
+.search-bar input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  background-color: #2a2a2a;
+  color: #fff;
+  font-size: 14px;
+}
+
+.suggestion-box {
+  position: absolute;
+  top: 48px;
+  left: 15px;
+  right: 15px;
+  background-color: #2a2a2a;
+  border: 1px solid #444;
+  border-radius: 6px;
+  z-index: 10;
+  max-height: 200px;
+  overflow-y: auto;
+  display: none;
+}
+
+.suggestion-box div {
+  padding: 8px 10px;
+  cursor: pointer;
+  border-bottom: 1px solid #333;
+}
+
+.suggestion-box div:hover {
+  background-color: #3a3a3a;
+}
+    body {
+      margin: 0;
+      background-color: #121212;
+      font-family: Arial, sans-serif;
+      color: #fff;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: auto;
+      padding: 15px;
+    }
+
+    .video-player {
+      position: relative;
+      width: 100%;
+      padding-top: 56.25%; /* 16:9 ratio */
+      background-color: #000;
+      margin-bottom: 15px;
+    }
+
+    .video-player iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .video-title {
+      font-size: 22px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .video-info {
+      font-size: 13px;
+      color: #aaa;
+      margin-bottom: 15px;
+    }
+
+    .video-description {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #ddd;
+      margin-bottom: 25px;
+    }
+
+    .recommend-section {
+      margin-top: 30px;
+    }
+
+    .recommend-title {
+      font-size: 16px;
+      font-weight: bold;
+      color: #00ffd0;
+      margin-bottom: 15px;
+    }
+
+    .recommend-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .recommend-card {
+      width: calc(25% - 9px);
+      background-color: #1e1e1e;
+      border-radius: 6px;
+      overflow: hidden;
+      text-decoration: none;
+      color: #fff;
+      font-size: 13px;
+      transition: transform 0.2s ease;
+    }
+
+    .recommend-card:hover {
+      transform: scale(1.03);
+    }
+
+    .recommend-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .duration {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      background: rgba(0,0,0,0.7);
+      padding: 2px 6px;
+      font-size: 12px;
+      border-radius: 3px;
+    }
+
+    .thumb-wrapper {
+      position: relative;
+    }
+
+    .recommend-title-card {
+      padding: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    @media (max-width: 768px) {
+      .recommend-card {
+        width: calc(50% - 6px);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .recommend-card {
+        width: 100%;
+      }
+    }
+    
+.load-more {
+      text-align: center;
+      margin: 20px 0 60px;
+    }
+
+    .load-more a {
+      background: #00ffd0;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: bold;
+      box-shadow: 0 0 10px #00ffd0a0;
+    }
+
+
+    footer {
+      text-align: center;
+      color: #777;
+      font-size: 13px;
+      margin-top: 50px;
+      padding-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+    <div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Cari anime atau video...">
+  <div id="suggestions" class="suggestion-box"></div>
+</div>
+
+<div class="container">
+  <!-- Video Player -->
+  
+  <div class="video-player">
+    <iframe src="https://luluv.do/e/c3p3c156jbq0" scrolling="no" frameborder="0" width="100%" height="360" allowfullscreen="true" webkitallowfullscreen="true" mozallowfullscreen="true"></iframe>
+  </div>
+
+  <!-- Judul dan Info -->
+  <div class="video-title">Isekai Mokushiroku - Episode 2</div>
+  <div class="video-info">Diposting oleh Azuki • 1 jam lalu • 24 menit</div>
+  <div class="video-description">
+   
+  </div>
+
+  <!-- Rekomendasi -->
+  <div class="recommend-section">
+    <div class="recommend-title">Video Rekomendasi</div>
+    <div class="recommend-grid">
+
+      <!-- Card 1 -->
+      <a href="detail-onepiece.html" class="recommend-card">
+        <div class="thumb-wrapper">
+          <img src="https://i.imgur.com/qqsCBtJ.jpg" alt="One Piece">
+          <span class="duration">24:10</span>
+        </div>
+        <div class="recommend-title-card">One Piece Episode 1136</div>
+      </a>
+
+      <!-- Card 2 -->
+      <a href="detail-busamen.html" class="recommend-card">
+        <div class="thumb-wrapper">
+          <img src="https://i.imgur.com/F3MlmUS.jpg" alt="Busamen">
+          <span class="duration">20:02</span>
+        </div>
+        <div class="recommend-title-card">Busamen Gachi Fighter Ep. 2</div>
+      </a>
+
+      <!-- Card 3 -->
+      <a href="detail-gachiakuta.html" class="recommend-card">
+        <div class="thumb-wrapper">
+          <img src="https://i.imgur.com/kHh6xqF.jpg" alt="Gachiakuta">
+          <span class="duration">21:33</span>
+        </div>
+        <div class="recommend-title-card">Gachiakuta Episode 2</div>
+      </a>
+
+      <!-- Card 4 -->
+      <a href="detail-witchwatch.html" class="recommend-card">
+        <div class="thumb-wrapper">
+          <img src="https://i.imgur.com/2R7ZzjE.jpg" alt="Witch Watch">
+          <span class="duration">22:11</span>
+        </div>
+        <div class="recommend-title-card">Witch Watch Episode 15</div>
+      </a>
+
+    </div>
+  </div>
+<div class="load-more">
+  <a href="page2.html">Berikutnya &raquo;</a>
+</div>
+  <footer>
+    &copy; 2025 AzlStream | Semua hak dilindungi.
+  </footer>
+</div>
+
+</body>
+</html>
