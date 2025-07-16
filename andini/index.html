@@ -19,6 +19,12 @@
       font-size: 1.5rem;
     }
 
+    .native-ads {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0;
+    }
+
     .grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
@@ -26,7 +32,7 @@
       padding: 20px;
     }
 
-    .video-card, .ad-card {
+    .video-card {
       background: #1f1f1f;
       border-radius: 10px;
       padding: 10px;
@@ -41,8 +47,9 @@
     .thumbnail {
       height: 120px;
       width: auto;
-      margin: 0 auto;
       border-radius: 6px;
+      display: block;
+      margin: 0 auto;
     }
 
     .title {
@@ -50,23 +57,30 @@
       font-size: 0.9rem;
     }
 
-    .ad-native {
-      width: 300px;
-      height: 250px;
-    }
-
     @media (max-width: 480px) {
-      .ad-native {
-        width: 100%;
-        height: auto;
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+      }
+
+      .title {
+        font-size: 0.8rem;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Judul -->
   <header>Andini Playlist</header>
 
+  <!-- ✅ Native Ads langsung -->
+  <div class="native-ads">
+    <script async="async" data-cfasync="false" src="//siblinggut.com/087a5434b38672b575440c316bebe4f4/invoke.js"></script>
+    <div id="container-087a5434b38672b575440c316bebe4f4"></div>
+  </div>
+
+  <!-- Grid Video -->
   <div class="grid" id="video-container"></div>
 
   <script>
@@ -79,26 +93,7 @@
         const container = document.getElementById('video-container');
         const filtered = data.filter(v => v.link.includes('andini/'));
 
-        filtered.forEach((video, index) => {
-          // Tambah Native Ads setelah 4 video
-          if (index === 4) {
-            const adDiv = document.createElement('div');
-            adDiv.className = 'ad-card';
-
-            const adContainer = document.createElement('div');
-            adContainer.id = 'container-087a5434b38672b575440c316bebe4f4';
-            adContainer.className = 'ad-native';
-
-            const adScript = document.createElement('script');
-            adScript.async = true;
-            adScript.setAttribute('data-cfasync', 'false');
-            adScript.src = '//siblinggut.com/087a5434b38672b575440c316bebe4f4/invoke.js';
-
-            adDiv.appendChild(adContainer);
-            adDiv.appendChild(adScript);
-            container.appendChild(adDiv);
-          }
-
+        filtered.forEach(video => {
           const card = document.createElement('div');
           card.className = 'video-card';
           card.innerHTML = `
