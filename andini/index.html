@@ -79,7 +79,7 @@
   <div class="grid" id="video-container"></div>
 
   <script>
-    fetch('/videos.json')
+    fetch('andini.json')
       .then(res => {
         if (!res.ok) throw new Error(`Gagal fetch JSON: ${res.status}`);
         return res.json();
