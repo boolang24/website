@@ -1,62 +1,85 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Iklan dalam Tabel</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Halaman Konten</title>
+  <!-- Import Google Font Oswald -->
+  <link href="https://fonts.googleapis.com/css2?family=Almendra:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+
   <style>
     body {
-      background-color: #eeeeee;
-      font-family: Arial, sans-serif;
-      padding: 20px;
+      margin: 0;
+      background-color: black;
+      color: gray;
+      font-family: 'Almendra' , sans-serif;
     }
-    table {
-      width: 100%;
-      max-width: 600px;
-      margin: auto;
-      background-color: #ffffff;
-      border-collapse: collapse;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-    th, td {
-      padding: 16px;
-      border: 1px solid #dddddd;
-      text-align: left;
-    }
-    .ad-cell {
+
+    h1 {
       text-align: center;
-      background-color: #f9f9f9;
+      padding: 20px 10px;
+      font-size: 22px;
+    }    
+.button-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr); /* 2 tombol per baris */
+      gap: 10px;
+      padding: 10px;
+      max-width: 720px;
+      margin: auto;
+    }
+    .video-button {
+      display: block;
+      background-color: gray;
+      color: white;
+      text-align: center;
+      margin-top: 5px;
+      padding: 15px;
+      font-size: 16px;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: background-color 0.3s ease;
+    }
+
+    .video-button:hover {
+      background-color: #c2185b;
+    }
+
+    .next-button {
+      display: block;
+      width: 90%;
+      max-width: 300px;
+     margin: 25px auto;
+      padding: 12px;
+      background-color: #2196f3;
+      border-radius: 6px;
+      color: black;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+    }
+
+    .next-button:hover {
+      background-color: #1976d2;
     }
   </style>
 </head>
 <body>
 
-  <table>
-    <tr>
-      <th>Judul</th>
-      <th>Deskripsi</th>
-    </tr>
-    <tr>
-      <td>Artikel 1</td>
-      <td>Konten menarik yang layak dibaca oleh pengunjung...</td>
-    </tr>
-    <tr>
-      <td>Artikel 2</td>
-      <td>Informasi bermanfaat yang bisa meningkatkan trafik...</td>
-    </tr>
-    <tr>
-      <td colspan="2" class="ad-cell">
-        <!-- Banner Ads 300x250 -->
-        <div style="width:300px; height:250px; margin:auto;">
-          <script type="text/javascript" src="//YOUR_ADSTERRA_CODE_HERE.js"></script>
-        </div>
-        <p style="font-size:12px; color:#999;">Sponsored content</p>
-      </td>
-    </tr>
-    <tr>
-      <td>Artikel 3</td>
-      <td>Tips dan trik monetisasi web seperti suhu ajarkan 💡</td>
-    </tr>
-  </table>
+  <h1>SELECT FILE </h1>
+  <div class="button-grid">
+    <a href="kategori/andini.html" class="video-button" target="_blank">Andini</a>
+    <a href="kategori/msbreew.html" class="video-button" target="_blank">Msbreew</a>
+    <a href="kategori/tante.html" class="video-button" target="_blank">Tante </a>
+    <a href="kategori/hijab.html" class="video-button" target="_blank">Hijab</a>
+    <a href="kategori/local1.html" class="video-button" target="_blank">Local 1</a>
+    <a href="kategori/local2.html" class="video-button" target="_blank">Local 2</a>
+    <a href="kategori/jepang.html" class="video-button" target="_blank">Jepang </a>
+    <a href="kategori/barat1.html" class="video-button" target="_blank">Barat 1</a>
+    <a href="kategori/barat2.html" class="video-button" target="_blank">Barat 2</a>
+    <a href="kategori/terbaru.html" class="video-button" target="_blank">Terbaru </a>
+  </div>
 
+  <a href="page2.html" class="next-button">Paling Baru &raquo;</a>
 </body>
 </html>
