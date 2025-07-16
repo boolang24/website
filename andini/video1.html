@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Andini Solo Part 1</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #121212;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 10px;
+    }
+
+    .ad-box {
+      width: 300px;
+      height: 250px;
+      background: #1f1f1f;
+      border: 1px solid #333;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+      margin-bottom: 20px;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .download-btn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      margin: 20px auto 30px;
+      transition: background 0.3s ease;
+      max-width: 240px;
+      text-align: center;
+    }
+
+    .horizontal-ad {
+      margin-bottom: 20px;
+    }
+
+    #rekomendasi {
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .rekomendasi-item {
+      width: 48%;
+      background: #1a1a1a;
+      border-radius: 10px;
+      overflow: hidden;
+      text-align: center;
+      max-width: 300px;
+    }
+
+    .rekomendasi-item img {
+      width: 100%;
+      display: block;
+    }
+
+    .rekomendasi-item p {
+      margin: 8px 0;
+      font-size: 14px;
+      color: #eee;
+    }
+
+    @media (max-width: 600px) {
+      .rekomendasi-item {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Native Ads Banner -->
+  <div class="ad-box">
+    <script async="async" data-cfasync="false" src="//siblinggut.com/087a5434b38672b575440c316bebe4f4/invoke.js"></script>
+    <div id="container-087a5434b38672b575440c316bebe4f4"></div>
+  </div>
+
+  <!-- 🎥 Video Player -->
+  <div class="video-wrapper">
+    <iframe src="https://luluv.do/e/zdvayskw3zv9" allowfullscreen></iframe>
+  </div>
+
+  <!-- 🟨 Fake Download Button -->
+  <a href="https://siblinggut.com/u5se2wg3?key=66e79a753269d03ddec67bae4a63fdcd"
+     class="download-btn" target="_blank">Download Video (HD)</a>
+
+  <!-- 📢 Satu Iklan Horizontal -->
+  <div class="horizontal-ad">
+    <script type="text/javascript">
+      atOptions = {
+        'key' : '92f94a83ddc6777a65c5121bc9cce74b',
+        'format' : 'iframe',
+        'height' : 50,
+        'width' : 320,
+        'params' : {}
+      };
+    </script>
+    <script type="text/javascript" src="//siblinggut.com/92f94a83ddc6777a65c5121bc9cce74b/invoke.js"></script>
+  </div>
+
+  <!-- 🔁 Auto-Generated Rekomendasi -->
+  <div id="rekomendasi"></div>
+
+  <!-- 🔴 Popunder Script Once Click -->
+  <script>
+    document.addEventListener('click', function () {
+      var s = document.createElement('script');
+      s.src = 'https://siblinggut.com/66/e7/9a/66e79a753269d03ddec67bae4a63fdcd.js';
+      s.type = 'text/javascript';
+      document.body.appendChild(s);
+    }, { once: true });
+  </script>
+
+  <!-- 🔄 Auto Load JSON Rekomendasi -->
+ <script>
+  fetch('/videos.json')')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('rekomendasi');
+        data.forEach(video => {
+          const card = document.createElement('div');
+          card.className = 'rekomendasi-item';
+          card.innerHTML = `
+            <a href="${video.link}" style="color: white; text-decoration: none;">
+              <img src="${video.thumbnail}" alt="${video.title}" />
+              <p>${video.title}</p>
+            </a>
+          `;
+          container.appendChild(card);
+        });
+      });
+  </script>
+
+</body>
+</html>
