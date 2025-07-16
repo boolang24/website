@@ -79,7 +79,7 @@
   </div>
 
   <script>
-    fetch('videos.json')
+    fetch('../videos.json')
       .then(res => res.json())
       .then(data => {
         const grid = document.getElementById('videoGrid');
