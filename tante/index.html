@@ -10,7 +10,7 @@
   </script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Msbreew Playlist</title>
+  <title>Tante Playlist</title>
   <style>
     body {
       margin: 0;
@@ -79,14 +79,14 @@
   <div class="grid" id="video-container"></div>
 
   <script>
-    fetch('msbreew.json')
+    fetch('tante.json')
       .then(res => {
         if (!res.ok) throw new Error(`Gagal fetch JSON: ${res.status}`);
         return res.json();
       })
       .then(data => {
         const container = document.getElementById('video-container');
-        const filtered = data.filter(v => v.link.includes('msbreew/'));
+        const filtered = data.filter(v => v.link.includes('tante/'));
 
         filtered.forEach(video => {
           const card = document.createElement('div');
