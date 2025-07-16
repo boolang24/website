@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tante Video</title>
+  <style>
+    body {
+      margin: 0;
+      background-color: #121212;
+      font-family: Arial, sans-serif;
+      color: #fff;
+      padding: 20px 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .ad-box {
+      width: 300px;
+      height: 250px;
+      background: #1f1f1f;
+      border: 1px solid #333;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .video-wrapper {
+      width: 100%;
+      max-width: 800px;
+      aspect-ratio: 16 / 9;
+      background: #000;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
+      margin-bottom: 20px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    .download-btn {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 12px 24px;
+      font-size: 1rem;
+      border-radius: 8px;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      margin: 20px auto 10px;
+      max-width: 240px;
+      text-align: center;
+      transition: background 0.3s ease;
+    }
+
+    .download-btn:hover {
+      background-color: #218838;
+    }
+
+    .horizontal-ad {
+      margin-top : 30px;
+      width: 320px;
+      height: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .rekomendasi-title {
+      text-align: center;
+      font-size: 1.2rem;
+      margin: 20px 0 10px;
+    }
+  .rekomendasi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Tetap 2 kolom */
+  gap: 15px;
+  max-width: 800px;
+  margin: auto;
+    }
+
+    .rekomendasi-item {
+      background: #1f1f1f;
+      padding: 10px;
+      border-radius: 10px;
+      text-align: center;
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .rekomendasi-item img {
+      height: 140px;
+      width: 140px;
+      border-radius: 6px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .rekomendasi-item p {
+      margin-top: 8px;
+      font-size: 0.85rem;
+      color: #f1f1f1;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ✅ Native Ads di atas video -->
+  <div class="ad-box">
+    <script async="async" data-cfasync="false" src="//siblinggut.com/087a5434b38672b575440c316bebe4f4/invoke.js"></script>
+    <div id="container-087a5434b38672b575440c316bebe4f4"></div>
+  </div>
+
+  <!-- 🎥 Video Player -->
+  <div class="video-wrapper">
+    <iframe src="https://luluv.do/e/i206m1htluph" allowfullscreen></iframe>
+  </div>
+
+  <!-- 🟨 Tombol Download -->
+  <a href="https://siblinggut.com/u5se2wg3?key=66e79a753269d03ddec67bae4a63fdcd" class="download-btn" target="_blank">
+    Download Video (HD)
+  </a>
+
+  <!-- 🟦 Iklan Horizontal (320x50) -->
+  <div class="horizontal-ad">
+    <script type="text/javascript">
+      atOptions = {
+        'key': '92f94a83ddc6777a65c5121bc9cce74b',
+        'format': 'iframe',
+        'height': 50,
+        'width': 320,
+        'params': {}
+      };
+    </script>
+    <script type="text/javascript" src="//siblinggut.com/92f94a83ddc6777a65c5121bc9cce74b/invoke.js"></script>
+  </div>
+	<div class="horizontal-ad">
+    <script type="text/javascript">
+      atOptions = {
+        'key': '92f94a83ddc6777a65c5121bc9cce74b',
+        'format': 'iframe',
+        'height': 50,
+        'width': 320,
+        'params': {}
+      };
+    </script>
+    <script type="text/javascript" src="//siblinggut.com/92f94a83ddc6777a65c5121bc9cce74b/invoke.js"></script>
+	</div>
+
+  <!-- 🟩 Judul Rekomendasi -->
+  <div class="rekomendasi-title">Video Rekomendasi</div>
+
+  <!-- 🔁 Rekomendasi Otomatis -->
+  <div class="rekomendasi-grid" id="rekomendasi"></div>
+
+  <!-- 📜 Script Ambil Data -->
+  <script>
+    fetch('tante.json')
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById('rekomendasi');
+        const filtered = data.filter(v => v.link !== 'tante/3.html');
+
+        filtered.forEach(video => {
+          const card = document.createElement('div');
+          card.className = 'rekomendasi-item';
+          card.innerHTML = `
+            <a href="../${video.link}">
+              <img src="${video.thumbnail}" alt="${video.title}">
+              <p>${video.title}</p>
+            </a>
+          `;
+          container.appendChild(card);
+        });
+      })
+      .catch(err => {
+        console.error('Gagal memuat videos.json:', err);
+      });
+  </script>
+
+</body>
+</html>
