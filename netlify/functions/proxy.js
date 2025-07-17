@@ -1,33 +1,31 @@
-const fetch = require("node-fetch");
+const axios = require("axios");
 
-exports.handler = async (event) => {
-  const videoId = event.queryStringParameters.id;
+exports.handler = async function (event, context) {
+  const { id } = event.queryStringParameters;
 
-  if (!videoId) {
+  if (!id) {
     return {
       statusCode: 400,
-      body: JSON.stringify({ error: "ID video tidak ditemukan" }),
+      body: JSON.stringify({ error: "Missing video ID" }),
     };
   }
 
   try {
-    const response = await fetch(`https://api.lulustream.com/api/video/${videoId}`);
-    const result = await response.json();
+    const response = await axios.get(`https://api.lulustream.xyz/api/source/${id}`, {
+      headers: {
+        "Authorization": "151336qps4s27btlru8adi",
+        "Content-Type": "application/json"
+      }
+    });
 
-    // Asumsikan API mengembalikan 'video_url' atau semacamnya
     return {
       statusCode: 200,
-      body: JSON.stringify({
-        video: result.video_url || result.sources?.[0]?.file || null
-      }),
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
+      body: JSON.stringify(response.data),
     };
-  } catch (err) {
+  } catch (error) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: "Gagal mengambil data" }),
+      body: JSON.stringify({ error: error.message }),
     };
   }
 };
