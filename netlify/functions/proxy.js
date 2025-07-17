@@ -10,12 +10,14 @@ exports.handler = async function (event, context) {
     };
   }
 
+  const key = "151336qps4s27btlru8adi"; // Pindahkan key ke sini agar tidak undefined
+
   try {
-    const response = await axios.get(`https://api.lulustream.xyz/api/source/${id}`, {
+    const response = await axios.get(`https://lulustream.com/api/file/info`, {
+      params: { key, id },
       headers: {
-        "Authorization": "151336qps4s27btlru8adi",
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     });
 
     return {
