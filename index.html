@@ -1,72 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LuluStream - Video List</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 0; background: #111; color: #fff; }
-    h1 { text-align: center; padding: 20px 0; background: #222; margin: 0; }
-    .video-grid {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      padding: 10px;
-    }
-    .video-item {
-      width: 48%;
-      margin-bottom: 10px;
-      background: #1c1c1c;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-    .video-item img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: cover;
-    }
-    .video-title {
-      font-size: 14px;
-      padding: 5px 8px;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-    a { text-decoration: none; color: inherit; }
-  </style>
+  <meta charset="UTF-8">
+  <title>LuluStream Video Player</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>LuluStream Videos</h1>
-  <div class="video-grid" id="videoContainer"></div>
+  <div class="container">
+    <h1>🎬 LuluStream Player</h1>
+    
+    <input type="text" id="videoIdInput" placeholder="Masukkan ID Video..." />
+    <button onclick="loadVideo()">Tampilkan Video</button>
 
-  <script>
-    const API_KEY = '151336qps4s27btlru8adi';
-    const API_URL = `https://lulustream.com/api/file/list?key=${API_KEY}`;
+    <div id="videoContainer">
+      <p>Video akan muncul di sini...</p>
+    </div>
+  </div>
 
-    fetch(API_URL)
-      .then(res => res.json())
-      .then(data => {
-        const container = document.getElementById('videoContainer');
-        if (!data.data || data.data.length === 0) {
-          container.innerHTML = '<p style="text-align:center;">Gagal memuat video.</p>';
-          return;
-        }
-        data.data.forEach(video => {
-          const vidEl = document.createElement('div');
-          vidEl.className = 'video-item';
-          vidEl.innerHTML = `
-            <a href="player.html?id=${video.file_code}">
-              <img src="https://img.youtube.com/vi/${video.file_code}/0.jpg" onerror="this.src='https://via.placeholder.com/320x180?text=No+Thumbnail';" />
-              <div class="video-title">${video.title}</div>
-            </a>
-          `;
-          container.appendChild(vidEl);
-        });
-      })
-      .catch(err => {
-        console.error('Fetch error:', err);
-        document.getElementById('videoContainer').innerHTML = '<p style="text-align:center;">Gagal memuat video.</p>';
-      });
-  </script>
+  <script src="script.js"></script>
 </body>
 </html>
