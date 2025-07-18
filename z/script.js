@@ -35,3 +35,28 @@ function agreeAndContinue() {
     alert("Silakan centang bahwa Anda berusia 18 tahun ke atas.");
   }
 }
+// Mengecek IP dan menampilkan popup jika IP berubah
+async function checkIP() {
+  try {
+    const res = await fetch("https://my-api-nu-three.vercel.app/api/ip");
+    const data = await res.json();
+    const currentIP = data.ip;
+
+    const savedIP = localStorage.getItem("savedIP");
+
+    if (savedIP !== currentIP) {
+      // Tampilkan popup jika IP baru
+      document.getElementById("nsfwPopup").style.display = "flex";
+      localStorage.setItem("savedIP", currentIP);
+    } else {
+      document.getElementById("nsfwPopup").style.display = "none";
+    }
+  } catch (error) {
+    console.error("Gagal mendeteksi IP:", error);
+  }
+}
+
+// Jalankan saat halaman dimuat
+window.addEventListener("DOMContentLoaded", function () {
+  checkIP();
+});
