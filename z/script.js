@@ -30,14 +30,23 @@ window.addEventListener("load", function () {
 function agreeAndContinue() {
   const checkbox = document.getElementById("ageCheckbox");
   if (checkbox.checked) {
-    localStorage.setItem("is18Plus", "true");
     document.getElementById("nsfwPopup").style.display = "none";
+
+    // Simpan status usia dan IP terkini
+    fetch("https://my-api-nu-three.vercel.app/api/ip")
+      .then(res => res.json())
+      .then(data => {
+        localStorage.setItem("is18Plus", "true");
+        localStorage.setItem("agreedIP", data.ip);
+      })
+      .catch(() => {
+        console.warn("Gagal menyimpan IP saat klik setuju.");
+      });
   } else {
     alert("Silakan centang bahwa Anda berusia 18 tahun ke atas.");
   }
 }
 
-// Mengecek IP dan menampilkan popup jika IP berubah atau belum menyetujui
 async function checkIP() {
   try {
     const res = await fetch("https://my-api-nu-three.vercel.app/api/ip");
@@ -45,13 +54,15 @@ async function checkIP() {
     const currentIP = data.ip;
 
     const savedIP = localStorage.getItem("savedIP");
+    const agreedIP = localStorage.getItem("agreedIP");
     const isAgreed = localStorage.getItem("is18Plus");
 
-    if (savedIP !== currentIP || isAgreed !== "true") {
-      // Tampilkan popup jika IP baru atau belum centang
+    // Jika IP baru atau belum pernah setuju
+    if (agreedIP !== currentIP || isAgreed !== "true") {
       document.getElementById("nsfwPopup").style.display = "flex";
       localStorage.setItem("savedIP", currentIP);
-      localStorage.removeItem("is18Plus"); // Reset izin kalau IP berubah
+      localStorage.removeItem("is18Plus");
+      localStorage.removeItem("agreedIP");
     } else {
       document.getElementById("nsfwPopup").style.display = "none";
     }
@@ -60,7 +71,6 @@ async function checkIP() {
   }
 }
 
-// Jalankan saat halaman dimuat
 window.addEventListener("DOMContentLoaded", function () {
   checkIP();
 });
