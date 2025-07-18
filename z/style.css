@@ -193,3 +193,18 @@ header h1 {
   height: 100%;
   border: 0;
 }
+.native-ad {
+  width: 100%;
+  height: 130px;
+  overflow: hidden;
+  transform: scale(0.9); /* bisa sesuaikan scale */
+  transform-origin: top center;
+  background-color: #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.native-ad iframe {
+  width: 100% !important;
+  height: 130px !important;
+}
