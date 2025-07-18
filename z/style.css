@@ -177,3 +177,10 @@ header h1 {
   transform: scale(1.5);
   margin-right: 10px;
 }
+.mini-banner {
+  width: 150px;
+  height: 125px;
+  overflow: hidden;
+  transform: scale(0.5); /* 50% ukuran */
+  transform-origin: top left;
+}
