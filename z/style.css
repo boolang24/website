@@ -23,7 +23,7 @@ header h1 {
 .categories {
   display: none;
   flex-direction: column;
-  background-color: #1c1c1c;
+  background-color: white;
   padding: 10px 20px;
 }
 .categories a {
