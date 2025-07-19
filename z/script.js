@@ -1,71 +1,58 @@
-function toggleMenu(){const e=document.getElementById("categoryMenu");e.style.display="flex"===e.style.display?"none":"flex"}
-
-window.addEventListener("scroll",()=>{const e=document.getElementById("stickyAd");window.scrollY>100&&"block"!==e.style.display&&(e.style.display="block")})
-
-function closeAd(){document.getElementById("stickyAd").style.display="none"}
-
-window.onscroll=function(){
-  document.getElementById("backToTop").style.display=document.documentElement.scrollTop>300?"block":"none"
+function toggleMenu() {
+  const e = document.getElementById("categoryMenu");
+  e.style.display = "flex" === e.style.display ? "none" : "flex";
 }
 
-document.getElementById("backToTop").onclick=function(){
-  window.scrollTo({top:0,behavior:"smooth"})
+window.addEventListener("scroll", () => {
+  const e = document.getElementById("stickyAd");
+  if (window.scrollY > 100 && e.style.display !== "block") {
+    e.style.display = "block";
+  }
+});
+
+function closeAd() {
+  document.getElementById("stickyAd").style.display = "none";
 }
 
-window.addEventListener("load",()=>{document.getElementById("loader").style.display="none"})
+window.onscroll = function () {
+  document.getElementById("backToTop").style.display =
+    document.documentElement.scrollTop > 300 ? "block" : "none";
+};
 
-function lazyLoadImages(){
-  const e=document.querySelectorAll("img.lazy");
-  if("IntersectionObserver"in window){
-    const t=new IntersectionObserver(o=>{
-      o.forEach(o=>{
-        if(o.isIntersecting){
-          const n=o.target;
-          n.src=n.dataset.src,
-          n.classList.add("loaded"),
-          t.unobserve(n)
+document.getElementById("backToTop").onclick = function () {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+};
+
+window.addEventListener("load", () => {
+  document.getElementById("loader").style.display = "none";
+});
+
+function lazyLoadImages() {
+  const e = document.querySelectorAll("img.lazy");
+  if ("IntersectionObserver" in window) {
+    const t = new IntersectionObserver((o) => {
+      o.forEach((o) => {
+        if (o.isIntersecting) {
+          const n = o.target;
+          n.src = n.dataset.src;
+          n.classList.add("loaded");
+          t.unobserve(n);
         }
-      })
+      });
     });
-    e.forEach(e=>t.observe(e))
-  }else{
-    e.forEach(e=>{
-      e.src=e.dataset.src,
-      e.classList.add("loaded")
-    })
+    e.forEach((e) => t.observe(e));
+  } else {
+    e.forEach((e) => {
+      e.src = e.dataset.src;
+      e.classList.add("loaded");
+    });
   }
 }
 
-function agreeAndContinue(){
-  const e=document.getElementById("ageCheckbox");
-  if(e.checked){
-    document.getElementById("nsfwPopup").style.display="none";
-    fetch("https://my-api-nu-three.vercel.app/api/ip")
-    .then(e=>e.json())
-    .then(e=>{localStorage.setItem("agreedIP",e.ip)})
-    .catch(()=>{console.warn("Gagal fetch IP saat menyimpan agreedIP")})
-  }else{
-    alert("Silakan centang bahwa Anda berusia 18 tahun ke atas.")
-  }
-}
+document.addEventListener("DOMContentLoaded", () => {
+  lazyLoadImages();
+});
 
-async function checkIP(){
-  const i=localStorage.getItem("agreedIP");
-  if(i){
-    document.getElementById("nsfwPopup").style.display="none";
-    return;
-  }
-  try{
-    const r=await fetch("https://my-api-nu-three.vercel.app/api/ip"),
-    d=await r.json();
-    localStorage.setItem("savedIP",d.ip),
-    document.getElementById("nsfwPopup").style.display="flex"
-  }catch(e){
-    console.error("Gagal mendeteksi IP:",e)
-  }
-}
-
-document.addEventListener("DOMContentLoaded",()=>{
-  checkIP(),
-  lazyLoadImages()
+document.getElementById("site-title").addEventListener("click", function () {
+  window.location.href = "index.html";
 });
