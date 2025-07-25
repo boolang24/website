@@ -8,11 +8,27 @@ const directLinks = [
 ];
 
 // Popunder script
+// === Popunder Ads ===
 const popunderScripts = [
   "//thermometerpushfulabnegate.com/66/e7/9a/66e79a753269d03ddec67bae4a63fdcd.js",
   "//thermometerpushfulabnegate.com/3b/db/a9/3bdba92060257b990b3bf917b9fa01e9.js",
   "//thermometerpushfulabnegate.com/26/7c/f6/267cf6ba29121d04dca551dd8586fbed.js"
 ];
+
+// Halaman yang tidak boleh memuat popunder
+const disablePopunderPaths = [
+  '/backlink.html'
+];
+
+const currentPath = window.location.pathname;
+
+// Jika bukan halaman yang dikecualikan, jalankan popunder acak
+if (!disablePopunderPaths.includes(currentPath)) {
+  const randomPop = popunderScripts[Math.floor(Math.random() * popunderScripts.length)];
+  const script = document.createElement("script");
+  script.src = randomPop;
+  document.body.appendChild(script);
+}
 
 // Native Ads (script src dan container ID harus sepasang)
 const nativeAds = [
