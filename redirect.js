@@ -1,30 +1,50 @@
-(async () => {
-  // Ambil directLink dari localStorage
-  const directLink = localStorage.getItem("directLink");
+// === Konfigurasi Directlink ===
+const directLinks = [
+  "https://thermometerpushfulabnegate.com/dwrpn1ns7?key=61637c39d8fe762ff37b9627e3bd95d3",
+  "https://thermometerpushfulabnegate.com/dwrpn1ns7?key=267cf6ba29121d04dca551dd8586fbed",
+  "https://thermometerpushfulabnegate.com/dwrpn1ns7?key=66e79a753269d03ddec67bae4a63fdcd"
+];
+const selectedLink = directLinks[Math.floor(Math.random() * directLinks.length)];
 
-  if (!directLink) return;
+// === Konfigurasi Backend ===
+const ipEndpoint = "https://my-api-nu-three.vercel.app/api/ip";
+const logCheckEndpoint = "https://my-api-nu-three.vercel.app/api/log-ip?ip=";
+const logSaveEndpoint = "https://my-api-nu-three.vercel.app/api/log-ip";
 
-  // Ambil IP dari backend kamu
+// === Halaman yang Tidak Aktif Redirect ===
+const disableRedirectPaths = [
+  "/watch/watch.html",
+  "/artikel/artikel.html"
+];
+
+const currentPath = window.location.pathname;
+
+// === Redirect Otomatis Jika IP Belum Pernah ===
+async function handleRedirectIfNeeded() {
   try {
-    const ipRes = await fetch("https://my-api-nu-three.vercel.app/api/ip");
-    const ipData = await ipRes.json();
-    const ip = ipData.ip;
+    if (disableRedirectPaths.includes(currentPath)) return;
 
-    // Log IP ke backend untuk cek apakah sudah pernah
-    const logRes = await fetch("https://my-api-nu-three.vercel.app/api/log-ip", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ip })
-    });
+    const res = await fetch(ipEndpoint);
+    const { ip } = await res.json();
 
-    const logData = await logRes.json();
+    const check = await fetch(logCheckEndpoint + ip);
+    const data = await check.json();
 
-    // Jika IP belum pernah diklik hari ini → redirect ke directLink
-    if (!logData.alreadyLoggedToday) {
-      window.open(directLink, "_blank");
+    if (!data.found) {
+      window.open(selectedLink, "_blank");
+
+      await fetch(logSaveEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ip })
+      });
     }
-
   } catch (err) {
     console.error("Redirect failed:", err);
   }
-})();
+}
+
+// === Fungsi Manual dari Tombol (Optional) ===
+async function redirectFromButton() {
+  await handleRedirectIfNeeded();
+}
