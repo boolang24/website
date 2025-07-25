@@ -7,6 +7,22 @@ const directLinks = [
   "https://thermometerpushfulabnegate.com/dwrpn1ns7?key=aa66bc713fed7d0d95815a2ccaa4db97"
 ];
 
+// Cek apakah sudah buka iklan hari ini
+const ipKey = 'directlink-clicked';
+const lastClick = localStorage.getItem(ipKey);
+const today = new Date().toDateString();
+
+document.getElementById('trapButton').addEventListener('click', () => {
+  if (lastClick !== today) {
+    const randomLink = directLinks[Math.floor(Math.random() * directLinks.length)];
+    window.open(randomLink, '_blank'); // buka iklan di tab baru
+    localStorage.setItem(ipKey, today);
+  }
+
+  // Tambahkan tindakan utama setelah klik, misalnya redirect ke konten
+  // window.location.href = "/watch/watch.html?id=...";
+});
+
 // Popunder script
 // === Popunder Ads ===
 const popunderScripts = [
